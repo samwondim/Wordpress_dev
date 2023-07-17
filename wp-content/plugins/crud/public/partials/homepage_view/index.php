@@ -1,24 +1,47 @@
 <!-- <form action="" class="myform"> -->
-<input type="text" placeholder="fullname" class="fullname"><br>
-<input type="email" placeholder="email" class="email"><br>
-<input type="text" placeholder="phone number" class="phone_number"><br>
-
-<select name="sex" class="sex">
-    <option>
-        Male
-    </option>
-    <option>
-        Female
-    </option>
-</select><br>
-<button class="btn">submit</button>
 <!-- </form> -->
+<link rel="stylesheet" href="https://unpkg.com/mvp.css">
+<div>
+    <h1>Welcome To Irent</h1>
+</div>
+<div>
+    <label for="fullname">Full name</label>
+    <input type="text" class="fullname" name="fullname">
+</div>
+
+<div>
+    <label for="phone_number">Phone number</label>
+    <input type="text" class="phone_number" name="phone_number">
+</div>
+
+<div>
+    <label for="email">E-mail</label>
+    <input type="email" class="email" name="email">
+</div>
+
+<div>
+    <label for="password">Password</label>
+    <input type="password" class="password" name="password">
+</div>
+
+<div>
+    <select name="sex" class="sex">
+        <option>Male</option>
+        <option>Female</option>
+    </select>
+</div>
+
+
+<button class="btn">Signup</button>
+
 
 <script>
     var ajaxurl = "<?php echo admin_url('admin-ajax.php'); ?>";
 
     const btn = document.querySelector('.btn');
+
     const fullname = document.querySelector('.fullname');
+    const password = document.querySelector('.password');
     const email = document.querySelector('.email');
     const phone_number = document.querySelector('.phone_number');
     const sex = document.querySelector('.sex');
@@ -30,20 +53,19 @@
     //     console.log(form_data.values);
     // }
 
-    btn.addEventListener('click', function() {
+    btn.addEventListener('click', () => {
         console.log(fullname.value);
-        console.log(email.value);
+        console.log(password.value);
         console.log(phone_number.value);
         console.log(sex.value);
-
 
         jQuery.ajax({
             url: ajaxurl,
             type: 'POST',
             data: {
-                action: 'irent_saveform',
+                action: 'irent_signup',
                 full_name: fullname.value,
-                email: email.value,
+                password: password.value,
                 phone_number: phone_number.value,
                 sex: sex.value
             },
